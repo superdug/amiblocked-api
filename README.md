@@ -1,4 +1,4 @@
-# Serverless - AWS Node.js Typescript
+# Serverless - amiblocked.io api
 
 Serverless Framework template for zero-config TypeScript support.
 
@@ -10,7 +10,7 @@ Thanks to [`serverless-typescript`](https://github.com/prisma-labs/serverless-pl
 - Supports ES2015 syntax + features (`export`, `import`, `async`, `await`, `Promise`, ...)
 - Supports `sls package`, `sls deploy` and `sls deploy function`
 - Supports `sls invoke local` + `--watch` mode
-- Integrates nicely with [`serverless-offline`](https://github.com/dherault/serverless-offline)
+
 
 ## Prerequisites
 
