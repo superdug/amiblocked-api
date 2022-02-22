@@ -3,12 +3,9 @@ import AWS, { DynamoDB, MarketplaceEntitlementService, Response } from "aws-sdk"
 import * as yup from "yup";
 import fetch from "node-fetch";
 
-
 const docClient = new AWS.DynamoDB.DocumentClient();
 const s3Bucket = new AWS.S3();
-
 const tableName = "IPsTable4";
-
 const headers = {
   "content-type": "application/json",
 };
@@ -181,8 +178,6 @@ export const listIP = async (event: APIGatewayProxyEvent): Promise<APIGatewayPro
     body: JSON.stringify(output.Items),
   };
 };
-
-
 
 export const truncateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const rows = await docClient
@@ -480,16 +475,22 @@ export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGa
           .then(data => {
             data.toString().split(/\r?\n/).forEach(
             function (line) {
-              if (
+                if (
                   (
                     line.toString().charAt(1) == "1" ||
                     line.toString().charAt(1) == "2" ||
                     line.toString().charAt(1) == "3" ||
                     line.toString().charAt(1) == "4" ||
                     line.toString().charAt(1) == "5" ||
-                    line.toString().charAt(1) == "."
-                  ) 
+                    line.toString().charAt(1) == "6" ||
+                    line.toString().charAt(1) == "7" ||
+                    line.toString().charAt(1) == "8" ||
+                    line.toString().charAt(1) == "9" ||
+                    line.toString().charAt(1) == "0" ||
+                    line.toString().charAt(1) == "." 
+                  )
                 ){
+
                     const reqBody = JSON.parse(event.body as string);
                     const IPAddr = {
                       ipAddress: line.toString(),
