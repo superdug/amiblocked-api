@@ -1,20 +1,8 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import AWS, { DynamoDB, MarketplaceEntitlementService, Response } from "aws-sdk";
-//import { v4 } from "uuid";
 import * as yup from "yup";
-import fs from "fs-extra";
-import { unlink } from "fs";
-//import * as rd from 'readline';
-//import axios from 'axios';
-//import cheerio from 'cheerio';
-//import { URL } from "url";
-import wget from "node-wget-promise";
-//import typeof from "typeof";
 import fetch from "node-fetch";
-import { resolve } from "path/posix";
-import { waitForDebugger } from "inspector";
-import Reference from "yup/lib/Reference";
-//import convertBody from 'fetch-charset-detection';
+
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 const s3Bucket = new AWS.S3();
@@ -520,7 +508,6 @@ export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGa
           }
         );
       }
-      //fs.unlink(name);
     }
   )
   return {
