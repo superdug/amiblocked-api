@@ -186,14 +186,3 @@ resources:
           - AttributeName: ipAddress
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
-
-#custom:
-#  customDomain:
-#    domainName: api.amiblocked.io
-#    basePath: ''
-#    createRoute53Record: true
-#    enabled: true
-#    apiType: http
-#    endpointType: regional
-#    securityPolicy: tls_1_2
-#    certificateName: api.amiblocked.io
