@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: IPAddrs-api
+service: IPAddrs-api-dev
 #configValidationMode: off
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
@@ -74,50 +74,50 @@ functions:
   makeIP:
     handler: src/handlers.makeIP
     events:
-      - httpApi:
+      - http:
           path: /IPAddr
           method: post
   getIP:
     handler: src/handlers.getIP
     events:
-      - httpApi:
+      - http:
           path: /IPAddr/{id}
           method: get
   updateIP:
     handler: src/handlers.updateIP
     events:
-      - httpApi:
+      - http:
           path: /IPAddr/{id}
           method: put
   deleteIP:
     handler: src/handlers.deleteIP
     events:
-      - httpApi:
+      - http:
           path: /IPAddr/{id}
           method: delete
   listIP:
     handler: src/handlers.listIP
     events:
-      - httpApi:
+      - http:
           path: /IPAddrs
           method: get
   truncateDatabase:
     handler: src/handlers.truncateDatabase
     events:
-      - httpApi:
+      - http:
           path: /truncateDatabase
           method: get
   refreshDatabase:
     handler: src/handlers.updateDatabase
     events:
-      - httpApi:
+      - http:
           path: /refreshDatabase
           method: get
   cronjob:
     handler: src/handlers.cronjob
     events:
       - schedule: rate(1 day)
-      - httpApi:
+      - http:
           path: /cronjob
           method: get
 
@@ -171,6 +171,7 @@ functions:
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
+  - serverless-domain-manager
 
 resources:
   Resources:
@@ -186,3 +187,6 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
 
+custom:
+  customDomain:
+    domainName: api.amiblocked.io

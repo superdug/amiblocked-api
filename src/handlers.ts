@@ -204,8 +204,9 @@ export const truncateDatabase = async (event: APIGatewayProxyEvent): Promise<API
   };
 };
 
-export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  await Promise.resolve(1);
+//export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+export const updateDatabase = async (id: string) => {
+  //await Promise.resolve(1);
 
   const fileList = [
     "alienvault_reputation.ipset",
@@ -490,8 +491,6 @@ export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGa
                     line.toString().charAt(1) == "." 
                   )
                 ){
-
-                    const reqBody = JSON.parse(event.body as string);
                     const IPAddr = {
                       ipAddress: line.toString(),
                       name: filename
@@ -501,7 +500,7 @@ export const updateDatabase = async (event: APIGatewayProxyEvent): Promise<APIGa
                       TableName: tableName,
                       Item: IPAddr,
                     })
-                    .promise();
+                    //.promise();
                         
                 }
               }
