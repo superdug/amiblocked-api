@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: IPAddrs-api-dev
+service: IPAddrs-api
 #configValidationMode: off
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
@@ -25,6 +25,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
+ 
 
   # you can overwrite defaults here
   #  stage: dev
@@ -74,50 +75,50 @@ functions:
   makeIP:
     handler: src/handlers.makeIP
     events:
-      - http:
+      - httpApi:
           path: /IPAddr
           method: post
   getIP:
     handler: src/handlers.getIP
     events:
-      - http:
+      - httpApi:
           path: /IPAddr/{id}
           method: get
   updateIP:
     handler: src/handlers.updateIP
     events:
-      - http:
+      - httpApi:
           path: /IPAddr/{id}
           method: put
   deleteIP:
     handler: src/handlers.deleteIP
     events:
-      - http:
+      - httpApi:
           path: /IPAddr/{id}
           method: delete
   listIP:
     handler: src/handlers.listIP
     events:
-      - http:
+      - httpApi:
           path: /IPAddrs
           method: get
   truncateDatabase:
     handler: src/handlers.truncateDatabase
     events:
-      - http:
+      - httpApi:
           path: /truncateDatabase
           method: get
   refreshDatabase:
     handler: src/handlers.updateDatabase
     events:
-      - http:
+      - httpApi:
           path: /refreshDatabase
           method: get
   cronjob:
     handler: src/handlers.cronjob
     events:
       - schedule: rate(1 day)
-      - http:
+      - httpApi:
           path: /cronjob
           method: get
 
@@ -171,7 +172,6 @@ functions:
 plugins:
   - serverless-plugin-typescript
   - serverless-offline
-  - serverless-domain-manager
 
 resources:
   Resources:
@@ -187,6 +187,13 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
 
-custom:
-  customDomain:
-    domainName: api.amiblocked.io
+#custom:
+#  customDomain:
+#    domainName: api.amiblocked.io
+#    basePath: ''
+#    createRoute53Record: true
+#    enabled: true
+#    apiType: http
+#    endpointType: regional
+#    securityPolicy: tls_1_2
+#    certificateName: api.amiblocked.io
