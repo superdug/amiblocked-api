@@ -19,12 +19,13 @@ service: IPAddrs-api
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
+  stage: ${opt:stage, 'v1'}
  
 
   # you can overwrite defaults here
@@ -57,7 +58,7 @@ provider:
             - "dynamodb:DeleteItem"
             - "dynamodb:Scan"
           Resource:
-            - { "Fn::GetAtt": ["IPsTable4", "Arn"] }
+            - { "Fn::GetAtt": ["IPsTable", "Arn"] }
 
 # you can define service wide environment variables here
 #  environment:
@@ -175,10 +176,10 @@ plugins:
 
 resources:
   Resources:
-    IPsTable4:
+    IPsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: IPsTable4
+        TableName: IPsTable
         AttributeDefinitions:
           - AttributeName: ipAddress
             AttributeType: S

@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 const s3Bucket = new AWS.S3();
-const tableName = "IPsTable4";
+const tableName = "IPsTable";
 const headers = {
   "content-type": "application/json",
 };
